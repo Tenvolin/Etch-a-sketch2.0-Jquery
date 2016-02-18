@@ -10,6 +10,16 @@ $(document).ready(function() {
 		$('.highlight').removeClass('highlight');
 	});
 	
+	$('#manual').click(function() {
+		$('#container').empty();
+		var n = prompt("Give new grid dimensions for a square");
+		manual_setup(n);
+		$(".blank").hover(function() {
+			$(this).addClass('highlight');
+			$(this).removeClass('blank');
+		})
+	})
+	
 })
 
 
