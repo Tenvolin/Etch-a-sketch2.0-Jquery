@@ -2,7 +2,9 @@ $(document).ready(function() {
 	setup();
 	
 	$("#reset").click(function() {
+		$('div').css('background-color', 'white');
 		$(".highlight").addClass("blank");
+		$('.highlight').removeClass('funk');
 		$('.highlight').removeClass('highlight');
 	});
 	
@@ -13,6 +15,11 @@ $(document).ready(function() {
 		} else {
 			alert("gimme a natural number, fam");
 		};
+	});
+
+	$('#funk').click(function() {
+		$('div').unbind('mouseenter').unbind('mouseleave');
+		enableRandomHighlighting();
 	});
 });
 
@@ -28,7 +35,7 @@ function setup() {
 	for(i=0; i<num_squares; i++) {
 		$('#container').append("<div class='blank'></div>");
 	}
-	enableHighlighting();
+	enableHighlighting()
 
 }
 
@@ -55,8 +62,52 @@ function manual_setup(n) {
 
 
 function enableHighlighting() {
-	$(".blank").hover(function() {
+	$(".blank").mouseenter(function() {
 		$(this).addClass('highlight');
 		$(this).removeClass('blank');
-	})
+	});
+}
+
+function enableRandomHighlighting() {
+	$(".blank").mouseenter(function() {
+		var r1 = Math.floor(Math.random() * 255);
+		var r2 = Math.floor(Math.random() * 255);
+		var r3 = Math.floor(Math.random() * 255);
+		$(this).addClass('highlight'); // rgb(0,0,0);
+		$(this).addClass('funk');
+		if($(this).hasClass('blank')) {
+			$(this).css("background-color", 'rgb(' + r1 + ',' + r2 + ',' + r3 + ')');
+		} else if($(this).hasClass('funk')) {
+			$(this).darken(10);
+		}
+		$(this).removeClass('blank');
+	});
+
+}
+
+jQuery.fn.darken = function(options) {
+
+	var settings = {
+		'percent'	: 15
+	};
+	
+	if ( options ) { 
+		$.extend( settings, options );
+	}
+
+	$(this).each(function() {
+		var darkenPercent = settings.percent;
+		var rgb = $(this).css('background-color').replace('rgb(', '').replace(')', '').split(',');
+		var red = $.trim(rgb[0]);
+		var green = $.trim(rgb[1]);
+		var blue = $.trim(rgb[2]);
+				
+		red = parseInt(red * (100 - darkenPercent) / 100);
+		green = parseInt(green * (100 - darkenPercent) / 100);
+		blue = parseInt(blue * (100 - darkenPercent) / 100);
+		
+		rgb = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+		$(this).css('background-color', rgb);
+	});
+	return this;
 }
