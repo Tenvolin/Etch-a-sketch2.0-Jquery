@@ -1,6 +1,7 @@
 * {
 	margin:0;
 }
+
 .blank {
 	box-sizing: border-box;
 	width: 2rem; height: 2em;
@@ -17,17 +18,16 @@
 }
 
 #container {
-	position: relative;
 	display: flex;
 	flex-flow: wrap;
 	width: 4rem;
-	border: 1px solid red;
 }
-	
-/*
-how the jquery will work:
-1) determine grid system
-2) multiply one dimension of the grid system by width of single container - this is our total container width.
-3) set #container css width property to 2)
-4) populate container with nxn boxes
-*/
+
+.wrapper {
+	display: inline-block;
+}
+
+.buttons {
+	position: relative;
+	text-align: center;
+}
