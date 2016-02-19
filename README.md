@@ -1,2 +1,3 @@
 # jquery_project2.0
-ReadmeReadmeReadme
+Second try at project. Full completion this time. 
+Project: Create an etch-a-sketch in html/css/js/jquery
