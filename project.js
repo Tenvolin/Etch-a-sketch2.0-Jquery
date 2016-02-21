@@ -2,7 +2,7 @@ $(document).ready(function() {
 	setup();
 	
 	$("#reset").click(function() {
-		$('div').css('background-color', 'white');
+		$('div').css('background-color', '');
 		$(".highlight").addClass("blank");
 		$('.highlight').removeClass('funk');
 		$('.highlight').removeClass('highlight');
